@@ -8,13 +8,14 @@ const searchInput = document.getElementById("search_input");
 
 // * EVENT FUNCTIONS -
 
-const loadPhone = async () => {
-	const url = "https://openapi.programming-hero.com/api/phones?search=iphone";
+const loadPhone = async (search) => {
+	const url = `https://openapi.programming-hero.com/api/phones?search=${search}`;
 	const response = await fetch(url);
 	const json = await response.json();
 	const data = json.data;
+	cardContainer.innerHTML = "";
 
-	data.forEach((phone) => {
+	data.slice(0, 9).forEach((phone) => {
 		const cardHtml = `
     <div class="card">
 			<figure class="card_image">
@@ -42,3 +43,8 @@ const loadPhone = async () => {
 loadPhone();
 
 // * EVENT HANDLERS -
+
+searchBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	loadPhone(searchInput.value);
+});

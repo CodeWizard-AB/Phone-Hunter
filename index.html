@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" class="font-poppin">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Phone Hunter</title>
+
+		<!-- * FONT REFERENCE -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
 
 		<!-- * CSS STYLE -->
 		<link rel="stylesheet" href="app/style.css" />
@@ -11,17 +19,44 @@
 	<body>
 		<!-- * HEADER COMPONENTS -->
 
-		<header>
+		<header class="container max-w-screen-xl m-auto px-3 bg-primary">
 			<nav>
 				<h1>Hot Gadgets</h1>
 				<button>Sign Up</button>
 			</nav>
-      <section></section>
+			<section>
+				<h1>Apple Iphone 13 Pro Max</h1>
+				<p>
+					There are many variations of passages of Lorem Ipsum available, but
+					the majority have suffered alteration in some form.
+				</p>
+			</section>
 		</header>
 
 		<!-- * MAIN COMPONENTS -->
 
-		<main></main>
+		<main class="container max-w-screen-xl m-auto px-8 my-24">
+			<h2 class="text-center font-semibold text-4xl mb-8">Search your phone</h2>
+			<form action="#" class="mb-12 flex justify-center">
+				<input
+					type="text"
+					class="bg-[#100F0F0D] outline-none px-5 rounded-l-md w-1/2"
+					placeholder="Search your phone"
+				/>
+				<button
+					class="btn bg-button hover:bg-button text-white rounded-none rounded-r-md px-12"
+				>
+					Search
+				</button>
+			</form>
+			<section id="card_container" class="grid grid-cols-3 gap-6">
+				<button
+					class="card_button col-span-3 justify-self-center font-semibold text-xl px-12"
+				>
+					Show all
+				</button>
+			</section>
+		</main>
 
 		<!-- * FOOTER COMPONENTS -->
 

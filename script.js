@@ -6,17 +6,22 @@ const cardContainer = document.getElementById("card_container");
 const searchBtn = document.getElementById("search_btn");
 const searchInput = document.getElementById("search_input");
 const showAllBtn = document.getElementById("show_btn");
+const loadSpinner = document.querySelector(".spinner");
 
 // * EVENT FUNCTIONS -
+
+const loadDefault = () => {
+	cardContainer.innerHTML = "";
+	showAllBtn.classList.add("hidden");
+};
 
 const loadPhone = async (search, clicked) => {
 	const url = `https://openapi.programming-hero.com/api/phones?search=${search}`;
 	const response = await fetch(url);
 	const json = await response.json();
 	const data = json.data;
-	const indexLast = clicked ? -1 : 6;
-	cardContainer.innerHTML = "";
-	showAllBtn.classList.add("hidden");
+	const indexLast = clicked && data.length >= 6 ? -1 : 6;
+	loadDefault();
 
 	data.slice(0, indexLast).forEach((phone) => {
 		const cardHtml = `
@@ -35,25 +40,41 @@ const loadPhone = async (search, clicked) => {
 					majority have suffered.
           </p>
 				<p class="text-2xl font-bold">$999</p>
-				<button class="card_button">Show Details</button>
+				<button class="card_button" id='${phone.slug}'>Show Details</button>
 			</div>
 		</div>
     `;
 		cardContainer.insertAdjacentHTML("afterbegin", cardHtml);
-		if (data.length >= 5) showAllBtn.classList.remove("hidden");
+		if (data.length > 6) showAllBtn.classList.remove("hidden");
+		if (clicked) showAllBtn.classList.add("hidden");
 	});
 };
-
-loadPhone();
 
 // * EVENT HANDLERS -
 
 searchBtn.addEventListener("click", (e) => {
 	e.preventDefault();
-	loadPhone(searchInput.value);
+	loadDefault();
+	loadSpinner.classList.remove("hidden");
+	setTimeout(() => {
+		loadSpinner.classList.add("hidden");
+		loadPhone(searchInput.value);
+	}, 2000);
 });
 
 showAllBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 	loadPhone(searchInput.value, true);
+});
+
+cardContainer.addEventListener("click", async (e) => {
+	const clicked = e.target;
+	if (clicked.tagName === "button".toUpperCase()) {
+		const phoneId = clicked.getAttribute("id");
+		const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+		const response = await fetch(url);
+		const json = await response.json();
+		const data = json.data;
+		console.log(data);
+	}
 });

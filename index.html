@@ -20,18 +20,20 @@
 	<body>
 		<!-- * HEADER COMPONENTS -->
 
-		<header class="container max-w-screen-xl m-auto px-3 bg-primary">
-			<nav class="flex justify-between items-center">
-				<h1>Hot Gadgets</h1>
-				<button class="card_button !m-0">Sign Up</button>
-			</nav>
-			<section>
-				<h1>Apple Iphone 13 Pro Max</h1>
-				<p>
-					There are many variations of passages of Lorem Ipsum available, but
-					the majority have suffered alteration in some form.
-				</p>
-			</section>
+		<header class="bg-primary">
+			<div class="container max-w-screen-xl m-auto px-8">
+				<nav class="flex justify-between items-center">
+					<h1 class="font-bold text-2xl text-dark2">Hot Gadgets</h1>
+					<button class="card_button !m-0">Sign Up</button>
+				</nav>
+				<section>
+					<h1>Apple Iphone 13 Pro Max</h1>
+					<p>
+						There are many variations of passages of Lorem Ipsum available, but
+						the majority have suffered alteration in some form.
+					</p>
+				</section>
+			</div>
 		</header>
 
 		<!-- * MAIN COMPONENTS -->
@@ -41,7 +43,7 @@
 			<form action="#" class="mb-12 flex justify-center">
 				<input
 					type="text"
-					class="bg-[#100F0F0D] outline-none p-5 px-8 rounded-l-md w-1/2"
+					class="bg-[#100F0F0D] outline-none p-5 px-8 rounded-l-md w-96"
 					placeholder="Search your phone"
 					id="search_input"
 				/>
@@ -53,14 +55,25 @@
 				</button>
 			</form>
 			<section id="card_container" class="grid grid-cols-3 gap-6"></section>
-			<button id="show_btn" class="card_button mx-auto px-12 hidden">
-				Show all
-			</button>
+			<p class="text-center spinner hidden">
+				<span class="loading loading-dots loading-lg"></span>
+			</p>
+			<button id="show_btn" class="card_button px-12 hidden">Show all</button>
 		</main>
+
+		<div
+			class="bg-white/10 z-10 absolute top-0 bottom-0 w-full backdrop-blur-sm"
+		></div>
+		<div class="absolute top-1/2 left-1/2">
+			<figure>
+				<img src="" alt="">
+			</figure>
+		</div>
 
 		<!-- * FOOTER COMPONENTS -->
 
 		<footer></footer>
+
 		<script src="script.js"></script>
 	</body>
 </html>

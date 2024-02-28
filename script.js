@@ -7,12 +7,21 @@ const searchBtn = document.getElementById("search_btn");
 const searchInput = document.getElementById("search_input");
 const showAllBtn = document.getElementById("show_btn");
 const loadSpinner = document.querySelector(".spinner");
+const modal = document.querySelectorAll(".modal_win");
+const modalDetail = document.getElementById("modal_window");
+const components = document.querySelectorAll(".component");
+const modalOverlay = document.getElementById("modal_overlay");
 
 // * EVENT FUNCTIONS -
 
 const loadDefault = () => {
 	cardContainer.innerHTML = "";
 	showAllBtn.classList.add("hidden");
+};
+
+const modalClose = () => {
+	modal.forEach((window) => window.classList.add("hidden"));
+	components.forEach((component) => component.classList.remove("hidden"));
 };
 
 const loadPhone = async (search, clicked) => {
@@ -74,7 +83,47 @@ cardContainer.addEventListener("click", async (e) => {
 		const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
 		const response = await fetch(url);
 		const json = await response.json();
-		const data = json.data;
-		console.log(data);
+		const phone = json.data;
+		modalDetail.innerHTML = "";
+
+		const detailHtml = `
+			<figure class="bg-primary grid place-items-center py-6">
+				<img
+					src="${phone.image}"
+					alt="${phone.name}"
+				/>
+			</figure>
+			<div class="flex flex-col gap-2 mt-4">
+				<h1 class="text-3xl font-bold">${phone.name}</h1>
+				<p class="text-sm">
+					It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+				</p>
+				<p><strong>Storage :</strong> ${phone.mainFeatures.storage}</p>
+				<p><strong>Chipset :</strong> ${phone.mainFeatures.chipSet}</p>
+				<p><strong>Memory :</strong> ${phone.mainFeatures.memory}</p>
+				<p><strong>Slug :</strong> ${phone.slug}</p>
+				<p><strong>Release data :</strong> ${phone.releaseDate}</p>
+				<p><strong>Brand :</strong> ${phone.brand}</p>
+				<p><strong>GPS :</strong> ${phone.others.GPS}</p>
+				<button
+					class="bg-[#DC3545] btn hover:bg-[#DC3545] text-white px-7 place-self-end closeModal">Close
+				</button>
+			</div>
+			`;
+		modalDetail.insertAdjacentHTML("afterbegin", detailHtml);
+		modal.forEach((window) => window.classList.remove("hidden"));
+		components.forEach((component) => component.classList.add("hidden"));
 	}
 });
+
+modalDetail.addEventListener("click", (e) => {
+	const clicked = e.target;
+	if (
+		clicked.tagName === "button".toUpperCase() &&
+		clicked.classList.contains("closeModal")
+	) {
+		modalClose();
+	}
+});
+
+modalOverlay.addEventListener("click", modalClose);

@@ -20,7 +20,7 @@
 	<body>
 		<!-- * HEADER COMPONENTS -->
 
-		<header class="bg-primary">
+		<header class="bg-primary component">
 			<div class="container max-w-screen-xl m-auto px-8">
 				<nav class="flex justify-between items-center">
 					<h1 class="font-bold text-2xl text-dark2">Hot Gadgets</h1>
@@ -38,7 +38,7 @@
 
 		<!-- * MAIN COMPONENTS -->
 
-		<main class="container max-w-screen-xl m-auto px-8 my-24">
+		<main class="container max-w-screen-xl m-auto px-8 my-24 component">
 			<h2 class="text-center font-semibold text-4xl mb-8">Search your phone</h2>
 			<form action="#" class="mb-12 flex justify-center">
 				<input
@@ -62,17 +62,17 @@
 		</main>
 
 		<div
-			class="bg-white/10 z-10 absolute top-0 bottom-0 w-full backdrop-blur-sm"
+		id="modal_overlay"
+			class="bg-white/10 z-10 absolute top-0 bottom-0 w-full backdrop-blur-sm hidden modal_win"
 		></div>
-		<div class="absolute top-1/2 left-1/2">
-			<figure>
-				<img src="" alt="">
-			</figure>
-		</div>
+		<div
+			id="modal_window"
+			class="modal_win absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 bg-slate-50 max-w-xl p-8 border rounded-lg shadow-xl hidden transition-all duration-[3000ms]"
+		></div>
 
 		<!-- * FOOTER COMPONENTS -->
 
-		<footer></footer>
+		<footer class="component"></footer>
 
 		<script src="script.js"></script>
 	</body>

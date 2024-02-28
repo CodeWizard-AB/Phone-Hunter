@@ -104,7 +104,7 @@ cardContainer.addEventListener("click", async (e) => {
 				<p><strong>Slug :</strong> ${phone.slug}</p>
 				<p><strong>Release data :</strong> ${phone.releaseDate}</p>
 				<p><strong>Brand :</strong> ${phone.brand}</p>
-				<p><strong>GPS :</strong> ${phone.others.GPS}</p>
+				<p><strong>GPS :</strong> ${phone.others?.GPS || "No GPS"}</p>
 				<button
 					class="bg-[#DC3545] btn hover:bg-[#DC3545] text-white px-7 place-self-end closeModal">Close
 				</button>
